@@ -1,5 +1,3 @@
-from distutils.command.upload import upload
-from tkinter import CASCADE
 from django.db import models
 
 class Location(models.Model):
@@ -17,7 +15,7 @@ class Image(models.Model):
     image_path = models.ImageField(upload_to = 'pictures/')
     image_name = models.CharField(max_length=100)
     description = models.TextField()
-    location = models.ForeignKey(Location,on_delete=CASCADE)
+    location = models.ForeignKey(Location,on_delete=models.CASCADE)
     categories = models.ManyToManyField(Category)
     
     def __str__(self):
