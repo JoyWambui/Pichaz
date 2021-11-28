@@ -27,16 +27,33 @@ class Location(models.Model):
         '''Retrieves an image instance from the database by id'''
         return cls.objects.filter(id=loc_id).delete()
 
-    
-    
-
 
 class Category(models.Model):
     category_name = models.CharField(max_length=50)
     
     def __str__(self):
         return self.category_name
-
+    
+    def save_category(self):
+        '''Saves a category instance to the database'''
+        self.save()
+        
+    @classmethod
+    def get_categories(cls):
+        '''Retrieves all the category instances from the database'''
+        return cls.objects.all()
+    
+    @classmethod
+    def update_category(cls,cat_id, value):
+        '''Updates a category instance '''
+        updated= Category.objects.get(id=cat_id)
+        updated.category_name=value
+        return updated.save()
+    
+    @classmethod
+    def delete_category(cls,cat_id):
+        '''Retrieves an image instance from the database by id'''
+        return cls.objects.filter(id=cat_id).delete()
 class Image(models.Model):
     image_path = models.ImageField(upload_to = 'pictures/')
     image_name = models.CharField(max_length=100)

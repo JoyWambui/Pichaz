@@ -101,3 +101,42 @@ class LocationTestCase(TestCase):
         locations = Location.get_locations()
         self.assertTrue(len(locations)==0)
         
+class CategoryTestCase(TestCase):
+    '''Tests the Category Model and its methods'''
+    
+    def setUp(self):
+        '''Creates an instance of the Category Model'''
+        self.category = Category(category_name='business')
+    
+    def tearDown(self):   
+        '''Clears the database after every test'''
+        Category.objects.all().delete()
+        
+    def test_save_category(self):
+        '''Tests if a category is saved'''
+        self.category.save_category()
+        categories = Category.objects.all()
+        self.assertTrue(len(categories)==1)
+
+    def test_get_categories(self):
+        '''Tests that all category instances are returned'''
+        self.category.save_category()
+        self.category1 = Category(category_name='fitness')
+        self.category1.save()
+        categories = Category.get_categories()
+        self.assertTrue(len(categories)==2)
+        
+    # def test_update_category(self):
+    #     '''Tests that a category can be updated'''
+    #     self.category.save_category()
+    #     print('loc=',self.category.pk)
+    #     Category.update_category(9,'thika')
+    #     self.assertEquals(self.category.category_name,'thika')
+    
+    def test_delete_category(self):
+        '''Tests that a category instance is deleted'''
+        self.category.save_category()
+        print('cat=',self.category.pk)
+        Category.delete_category(1)
+        categories = Category.get_categories()
+        self.assertTrue(len(categories)==0)
