@@ -80,10 +80,10 @@ class Image(models.Model):
         return cls.objects.filter(pk=image_id).get()
         
 
-    # @classmethod
-    # def update_image(cls,image_id,*, kwargs):
-    #     '''Updates an image instance's attribute values'''
-    #     return cls.objects.filter(id=image_id).update()
+    @classmethod
+    def update_image(cls,image_id, **kwargs):
+        '''Updates an image instance's attribute values'''
+        return cls.objects.filter(id=image_id).update(**kwargs)
     
     @classmethod
     def delete_image(cls,image_id):
