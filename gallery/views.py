@@ -9,6 +9,7 @@ def index(request):
     return render(request, 'index.html',{'images':images})
 
 def search_categories(request):
+    '''View function that displays searched photos by category'''
     if 'image' in request.GET and request.GET['image']:
         search_term = request.GET.get("image")
         searched_images = Image.search_by_category(search_term)
@@ -19,5 +20,9 @@ def search_categories(request):
     else:
         messages.add_message(request, messages.ERROR, "You haven't searched for any term.")
         return render(request, 'search.html')
-
+    
+def locations(request):
+    '''View function that displays all locations'''
+    locations= Location.get_locations()
+    return render(request,'locations.html',{'locations':locations})
     

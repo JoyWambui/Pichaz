@@ -76,6 +76,13 @@ class ImageTestCase(TestCase):
         images = Image.search_by_category('travel')
         self.assertTrue(len(images)>0)
         
+    def test_view_by_location(self):
+        '''Tests that all images with a certain location are returned'''
+        self.image.save_image()
+        print('iiid=',self.image.pk)
+        images = Image.view_by_location('nairobi')
+        self.assertTrue(len(images)>0)
+        
 class LocationTestCase(TestCase):
     '''Tests the Location Model and its methods'''
     
@@ -112,7 +119,7 @@ class LocationTestCase(TestCase):
         '''Tests that a location instance is deleted'''
         self.location.save_location()
         print('loc=',self.location.pk)
-        Location.delete_location(8)
+        Location.delete_location(9)
         locations = Location.get_locations()
         self.assertTrue(len(locations)==0)
         

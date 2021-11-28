@@ -94,4 +94,10 @@ class Image(models.Model):
     def search_by_category(cls, search_term):
         images = Image.objects.filter(categories__category_name=search_term).all()
         return images
+    
+    @classmethod
+    def view_by_location(cls, location):
+        images = Image.objects.filter(location__location_name=location).all()
+        return images
+
 
