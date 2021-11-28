@@ -2,18 +2,41 @@
 {%block content%}
 <h1 class="text-center">here i am</h1>
 <div class="container-fluid">
-    <div class="row row-cols-4 row-cols-md-4 g-4">
+    <div class="row row-cols-1 row-cols-md-4  g-4">
         {%for image in images%}
         <div class="col">
             <div class="card ">
-                <img src="{{image.image_path.url}}" class="card-img-top" alt="{{image.image_name}}">
+                <img src="{{image.image_path.url}}" style=" object-fit: cover;" class="card-img-top" alt="{{image.image_name}}"
+                    data-bs-toggle="modal" data-bs-target="#staticBackdrop{{image.id}}">
+            </div>
+        </div>
+        <div class="modal fade" id="staticBackdrop{{image.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <img src="{{image.image_path.url}}" class="img-fluid" style=" object-fit: cover;" alt="{{image.image_name}}"
+                            data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    </div>
+                    <div class="modal-header">
+                        <ul >
+                            <li><b>Name:</b>  {{image.image_name|capfirst}}</li>
+                            <li><b>Description:</b> {{image.description|capfirst}}</li>
+                            <li><b>Location:</b> {{image.location|capfirst}}</li>
+                            <li><b>Categories:</b> {{image.categories|capfirst}}</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
         {% empty %}
         <div class="row">
-          <h2 class="text-center">There No Images</h2>
+            <h2 class="text-center">There No Images</h2>
         </div>
         {% endfor %}
-        </div>
+    </div>
 </div>
 {%endblock%}
