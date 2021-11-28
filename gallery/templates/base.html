@@ -1,0 +1,33 @@
+<!-- {% load bootstrap5 %}
+{% load static%} -->
+<!DOCTYPE html>
+<html lang="eng">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% if title %}
+    <title>Pichaz - {{title}}</title>
+    {% else %}
+    <title> Pichaz </title>
+    {% endif %}
+
+    <!-- {% block styles %}
+    {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/basenews.css' %}">
+    {% endblock %} -->
+
+</head>
+
+<body>
+    <!-- {% include 'navbar.html' %} -->
+    {% block content %}
+    {%endblock%}
+    <!-- {% block scripts %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> 
+        {%bootstrap_javascript %}
+    {% endblock %} -->
+</body>
+
+</html>
