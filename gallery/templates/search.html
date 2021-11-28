@@ -1,7 +1,22 @@
 {%extends 'base.html'%}
+
 {%block content%}
-<h1 class="text-center">here i am</h1>
 <div class="container-fluid">
+    <div class="row">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }} text-danger" {% endif %}>{{ message }}</li>
+                {% endfor %}
+        </ul>
+        {% endif %}
+        {% if images%}
+        <h2 class="text-center">{{ images|length }} {{message|title}} images were found.</h2>
+        {% else %}
+        <h2 class="text-center">There are no images in category {{message|title}}</h2>
+        {% endif %}
+
+    </div>
     <div class="row row-cols-1 row-cols-md-4  g-4">
         {%for image in images%}
         <div class="col">
@@ -26,7 +41,7 @@
                             <li><b>Name:</b> {{image.image_name|capfirst}}</li>
                             <li><b>Description:</b> {{image.description|capfirst}}</li>
                             <li><b>Location:</b> {{image.location|capfirst}}</li>
-                            <li><b>Categories:</b> 
+                            <li><b>Categories:</b>
                                 {% for category in image.categories.all %}
                                 <ul>
                                     <li>{{ category.category_name }}</li>
@@ -37,10 +52,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        {% empty %}
-        <div class="row">
-            <h2 class="text-center">There No Images</h2>
         </div>
         {% endfor %}
     </div>

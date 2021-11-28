@@ -54,12 +54,13 @@ class Category(models.Model):
     def delete_category(cls,cat_id):
         '''Retrieves an image instance from the database by id'''
         return cls.objects.filter(id=cat_id).delete()
+    
 class Image(models.Model):
     image_path = models.ImageField(upload_to = 'pictures/')
     image_name = models.CharField(max_length=100)
     description = models.TextField()
     location = models.ForeignKey(to=Location,on_delete=models.CASCADE, null=True)
-    categories = models.ManyToManyField(Category)
+    categories = models.ManyToManyField(Category,related_query_name='images')
     
     def __str__(self):
         return self.image_name
@@ -88,3 +89,9 @@ class Image(models.Model):
     def delete_image(cls,image_id):
         '''Retrieves an image instance from the database by id'''
         return cls.objects.filter(id=image_id).delete()
+    
+    @classmethod
+    def search_by_category(cls, search_term):
+        images = Image.objects.filter(categories__category_name=search_term).all()
+        return images
+

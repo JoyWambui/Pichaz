@@ -42,7 +42,7 @@ class ImageTestCase(TestCase):
     def test_get_single_image(self):
         '''Retrieves an image instance from the database by id'''
         self.image.save_image()
-        print(self.image.pk)
+        print('my id=',self.image.pk)
         got_image= Image.get_single_image(4)
         self.assertEquals(self.image,got_image)
 
@@ -57,9 +57,24 @@ class ImageTestCase(TestCase):
     def test_delete_image(self):
         '''Tests whether an image instance is deleted'''
         self.image.save_image()
+        print('eh',self.image.pk)
         Image.delete_image(1)
         images = Image.get_images()
         self.assertTrue(len(images)==0)
+        
+    def test_search_by_category(self):
+        '''Tests that a category's images are returned'''
+        self.image.save_image()
+        self.location1 = Location(location_name='thika')
+        self.location1.save()
+        self.category1 = Category(category_name='travel')
+        self.category1.save()
+        self.image1 = Image(image_path='imagepath1',image_name='pineapple',description='a pinapple farm',location=self.location1)
+        self.image1.save_image()
+        self.image1.categories.add(self.category1)
+        print('id=',self.category1.pk)
+        images = Image.search_by_category('travel')
+        self.assertTrue(len(images)>0)
         
 class LocationTestCase(TestCase):
     '''Tests the Location Model and its methods'''
@@ -97,7 +112,7 @@ class LocationTestCase(TestCase):
         '''Tests that a location instance is deleted'''
         self.location.save_location()
         print('loc=',self.location.pk)
-        Location.delete_location(6)
+        Location.delete_location(8)
         locations = Location.get_locations()
         self.assertTrue(len(locations)==0)
         
@@ -140,3 +155,4 @@ class CategoryTestCase(TestCase):
         Category.delete_category(1)
         categories = Category.get_categories()
         self.assertTrue(len(categories)==0)
+    
