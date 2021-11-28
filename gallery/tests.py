@@ -61,5 +61,43 @@ class ImageTestCase(TestCase):
         images = Image.get_images()
         self.assertTrue(len(images)==0)
         
+class LocationTestCase(TestCase):
+    '''Tests the Location Model and its methods'''
+    
+    def setUp(self):
+        '''Creates an instance of the Location Model'''
+        self.location = Location(location_name='nairobi')
+    
+    def tearDown(self):   
+        '''Clears the database after every test'''
+        Location.objects.all().delete()
+        
+    def test_save_location(self):
+        '''Tests if a location is saved'''
+        self.location.save_location()
+        locations = Location.objects.all()
+        self.assertTrue(len(locations)==1)
 
+    def test_get_locations(self):
+        '''Tests that all location instances are returned'''
+        self.location.save_location()
+        self.location1 = Location(location_name='thika')
+        self.location1.save()
+        locations = Location.get_locations()
+        self.assertTrue(len(locations)==2)
+        
+    # def test_update_location(self):
+    #     '''Tests that a location can be updated'''
+    #     self.location.save_location()
+    #     print('loc=',self.location.pk)
+    #     Location.update_location(9,'thika')
+    #     self.assertEquals(self.location.location_name,'thika')
+    
+    def test_delete_location(self):
+        '''Tests that a location instance is deleted'''
+        self.location.save_location()
+        print('loc=',self.location.pk)
+        Location.delete_location(6)
+        locations = Location.get_locations()
+        self.assertTrue(len(locations)==0)
         
