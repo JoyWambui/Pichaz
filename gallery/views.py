@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-def home(request):
+def index(request):
     '''View function that displays uploaded photos'''
-    return render(request, 'home.html')
+    return render(request, 'index.html')
     
