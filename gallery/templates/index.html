@@ -25,7 +25,7 @@
                         <ul>
                             <li><b>Name:</b> {{image.image_name|capfirst}}</li>
                             <li><b>Description:</b> {{image.description|capfirst}}</li>
-                            <li><b>Location:</b> {{image.location|capfirst}}</li>
+                            <li><b>Location:</b> <a href="{%url 'location_images' id=image.location.id%}">{{image.location|capfirst}}</a></li>
                             <li><b>Categories:</b> 
                                 {% for category in image.categories.all %}
                                 <ul>

@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.shortcuts import render
 from . models import Image,Category,Location
 from django.contrib import messages
@@ -25,4 +26,12 @@ def locations(request):
     '''View function that displays all locations'''
     locations= Location.get_locations()
     return render(request,'locations.html',{'locations':locations})
-    
+
+def location_images(request,id):
+    '''View function that displays all images based on a location'''
+    try:
+        location = Location.objects.get(id = id)
+    except Location.DoesNotExist:
+        raise Http404("Location does not exist")
+    images = Image.view_by_location(location.location_name)
+    return render(request,"location.html", {"images":images, 'location':location})
