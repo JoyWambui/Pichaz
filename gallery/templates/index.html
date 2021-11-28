@@ -21,18 +21,24 @@
                         <img src="{{image.image_path.url}}" class="img-fluid" style=" object-fit: cover;"
                             alt="{{image.image_name}}" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                     </div>
-                    <div class="modal-header">
+                    <div class="modal-body">
                         <ul>
                             <li><b>Name:</b> {{image.image_name|capfirst}}</li>
                             <li><b>Description:</b> {{image.description|capfirst}}</li>
-                            <li><b>Location:</b> <a href="{%url 'location_images' id=image.location.id%}">{{image.location|capfirst}}</a></li>
-                            <li><b>Categories:</b> 
+                            <li><b>Location:</b> <a
+                                    href="{%url 'location_images' id=image.location.id%}">{{image.location|capfirst}}</a>
+                            </li>
+                            <li><b>Categories:</b>
                                 {% for category in image.categories.all %}
                                 <ul>
                                     <li>{{ category.category_name }}</li>
                                 </ul>
                                 {% endfor %}
                             </li>
+                            <div class="d-grid gap-2 col-6 mx-auto">
+                                <br><button type="button" onclick="copyFunction()" class="btn btn-outline-dark copy-btn"
+                                data-url={{image.image_path.url}}>Copy</button>
+                            </div>
                         </ul>
                     </div>
                 </div>
