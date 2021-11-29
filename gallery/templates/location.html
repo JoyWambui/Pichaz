@@ -31,7 +31,7 @@
                             <li><b>Name:</b> {{image.image_name|capfirst}}</li>
                             <li><b>Description:</b> {{image.description|capfirst}}</li>
                             <li><b>Location:</b> {{image.location|capfirst}}</li>
-                            <li><b>Categories:</b> 
+                            <li><b>Categories:</b>
                                 {% for category in image.categories.all %}
                                 <ul>
                                     <li>{{ category.category_name }}</li>
@@ -42,6 +42,7 @@
                     </div>
                 </div>
             </div>
+            {% endfor %}
         </div>
     </div>
     {%else%}
