@@ -2,6 +2,7 @@
 
 {%block content%}
 <div class="container-fluid">
+    {%if locations%}
     <div class="row ">
         {%for location in locations%}
         <div class="col-md-1"></div>
@@ -16,5 +17,11 @@
         <div class="col-md-1"></div>
         {% endfor %}
     </div>
+    {%else%}
+    <div class="row">
+        <h2 class="text-center">There Are No Locations</h2>
+    </div>
+    {%endif%}
+
 </div>
 {%endblock%}
