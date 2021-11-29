@@ -8,7 +8,7 @@
 A personal gallery application that allows a user to view uploaded photos and their corresponding details. Additionally, a user can view the photos based on the location they were taken.
 
 ### Main features
-    A user can: 
+A user can: 
 
 * View different photos that interest them.
 
@@ -36,29 +36,29 @@ To view this project:
 ### Existing virtualenv
 1. In your terminal, clone the repository from Github and switch to the new directory:
 
-    $ git clone https://github.com/JoyWambui/Pichaz.git
-    $ cd pichaz
-    $ code . (for VS Code or similar command for your respective editor)
+        $ git clone https://github.com/JoyWambui/Pichaz.git
+        $ cd pichaz
+        $ code . (for VS Code or similar command for your respective editor)
 
 2. Activate your virtual environment
 
 3. Install project dependencies:
 
-    $ pip install -r requirements.txt
+        $ pip install -r requirements.txt
     
     
 4. Apply the migrations:
 
-    $ python manage.py migrate
+        $ python manage.py migrate
     
 
 5. Run the development server:
 
-    $ python manage.py runserver
+        $ python manage.py runserver
 
 6. Test the application:
 
-    $ python manage.py test gallery
+        $ python manage.py test gallery
 
 
 
@@ -72,7 +72,7 @@ for installing python 3 packages.
 
 2. Install the virtual environment:
 
-    $ python -m venv name_of_your_virtual_environment
+        $ python -m venv name_of_your_virtual_environment
 
 3. Follow steps 2-6 as above.
 ## Languages and Technologies
