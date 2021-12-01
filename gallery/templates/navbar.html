@@ -9,10 +9,12 @@
             <div class="navbar-nav">
                 <a class="nav-link active" aria-current="page" href="{%url 'index'%}">Home</a>
                 <a class="nav-link" href="{%url 'locations'%}">Locations</a>
+                <a class="nav-link" href="{%url 'admin:index'%}">Admin</a>
+
             </div>
             <form class="d-flex" action="{% url 'search_categories' %}">
                 <input class="form-control me-2" type="search" placeholder="Search By Category" name="image"
-                    aria-label="Search" style="text-transform: capitalize;">
+                    aria-label="Search"  id="search_term">
                 <button class="btn btn-outline-info" type="submit">Search</button>
             </form>
 
